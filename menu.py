@@ -116,3 +116,19 @@ def listenButtonEvents(buttonsArray):
                     break;
 
     return buttonClicked
+
+def correctAnswerSound():
+    pygame.mixer.music.load('resources/Obtain_Ring.wav')
+    pygame.mixer.music.play(0)
+
+def multipleCorrectSound():
+    pygame.mixer.music.load('resources/Checkpoint.wav')
+    pygame.mixer.music.play(0)
+
+def wrongAnswerSound():
+    pygame.mixer.music.load('resources/Lose_Rings.wav')
+    pygame.mixer.music.play(0)
+
+def deadSound():
+    pygame.mixer.music.load('resources/Death.wav')
+    pygame.mixer.music.play(0)

@@ -32,6 +32,8 @@ def main():
             dibujarMenu(screen)
             break
 
+            #pasar logica del juego a una funcion para poder volver al menu
+
 
         #definimos funciones
 
@@ -70,7 +72,7 @@ def main():
         # 1 frame cada 1/fps segundos
             gameClock.tick(fps)
             totaltime += gameClock.get_time()
-            
+
 
             if True:
             	fps = 3
@@ -96,8 +98,18 @@ def main():
 
                         if sumar>0:
                             correctas=correctas+1
+                            if(correctas > 3):
+                                multipleCorrectSound()
+                            else:
+                                correctAnswerSound()
+
                         else:
+                            if(correctas == 0):
+                                deadSound()
+                            else:
+                                wrongAnswerSound()
                             correctas=0
+
                         if len(elegidos)==N:
                                 elegidos=[]
                                 masDeUnaVuelta = True
