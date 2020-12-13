@@ -73,6 +73,7 @@ def dibujar(screen, palabraUsuario, lista, puntos, segundos, ayuda):
 
     #fondo de pantalla
     background = pygame.image.load(".//resources//elysium.png")
+    background = pygame.transform.scale(background, (ANCHO, ALTO))
     screen.blit(background, (0,0))
 
     #muestra lo que escribe el jugador

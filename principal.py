@@ -7,6 +7,7 @@ from configuracion import *
 from extras import *
 
 from funcionesVACIAS import *
+from menu import *
 
 
 #Funcion principal
@@ -23,6 +24,14 @@ def main():
         #Preparar la ventana
         pygame.display.set_caption("Cancionero...")
         screen = pygame.display.set_mode((ANCHO, ALTO))
+
+        #Menu
+        menuScreen = True
+
+        while (menuScreen):
+            dibujarMenu(screen)
+            break
+
 
         #definimos funciones
 
@@ -54,8 +63,6 @@ def main():
         #elige una linea al azar y su siguiente
         lista=seleccion(letra)
 
-##        print(lista)
-
         ayuda = "Cancionero"
         dibujar(screen, palabraUsuario, lista, puntos, segundos, ayuda)
 
@@ -63,6 +70,7 @@ def main():
         # 1 frame cada 1/fps segundos
             gameClock.tick(fps)
             totaltime += gameClock.get_time()
+            
 
             if True:
             	fps = 3
@@ -116,7 +124,8 @@ def main():
                         lista=seleccion(letra)
 
 
-            segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
+            #segundos = TIEMPO_MAX - pygame.time.get_ticks()/1000
+            segundos = TIEMPO_MAX - totaltime / 1000
 
             #Limpiar pantalla anterior
             screen.fill(COLOR_FONDO)

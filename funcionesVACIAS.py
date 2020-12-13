@@ -5,28 +5,21 @@ import unicodedata
 
 
 def lectura(archivo, letra, artistaYcancion): #se queda solo con los oraciones de cierta longitud y filtra tildes por ej
-    #artistaYcancion = [];
-    #letra = [];
-    print('cantidad de letras')
-    print(len(letra))
+
     #leer archivo y convertir en array
-    #localFile = open(archivo.name, 'r', encoding='utf-8')
-    #print(archivo.readline())
     for line in archivo.readlines():
         letra.append(line.rstrip('\n'))
 
     #saco la primera linea del array que representa al artistaYCancion
     firstLine = letra.pop(0)
 
-    # primera linea =  nombre artista, variantes y cancion dividido por ";"
-    #artistaYcancion = firstLine.split(';')
+    # nombre artista, variantes y cancion dividido por ";"
     arrayArtistaCancion = firstLine.split(';')
     for artistaCan in arrayArtistaCancion:
         artistaYcancion.append(artistaCan)
 
-    #segunda linea en adelante son lineas de la cancion
+    #segunda linea en adelante son lineas de la cancion. variable letra
 
-    #filtrar caracteres especiales (',!) y evitar lineas que no entren en pantalla
     print(artistaYcancion)
     print(letra)
     archivo.close()
