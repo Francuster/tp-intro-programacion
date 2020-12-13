@@ -21,7 +21,7 @@ def dibujarMenu(screen):
     #Array de botones a renderizar
     buttonsArray = []
 
-    buttonsArray.append(['button 1', widthPart * 3, heightPart * 3, 140, 40])
+    buttonsArray.append(['Jugar', widthPart * 3, heightPart * 3, 140, 40])
     buttonsArray.append(['button 2', widthPart * 7, heightPart * 3, 140, 40])
     buttonsArray.append(['button 3', widthPart * 3, heightPart * 5, 140, 40])
     buttonsArray.append(['button 4', widthPart * 7, heightPart * 5, 140, 40])
@@ -37,13 +37,11 @@ def dibujarMenu(screen):
 
         if(buttonClicked != ''):
 
-            if(buttonClicked == 'button 1'):
+            if(buttonClicked == 'Jugar'):
                 ##go to
                 return
 
-            if (buttonClicked == 'button 4'):
-                ##go to
-                return
+
 
 
         # fills the screen with a color
@@ -89,7 +87,7 @@ def renderButton(screen, buttonText, coordX, coordY, width, height):
         pygame.draw.rect(screen, color_dark, [coordX, coordY, 140, 40])
 
     # superimposing the text onto our button
-    screen.blit(text, (coordX + 10, coordY))
+    screen.blit(text, (coordX + 15, coordY))
 
 def listenButtonEvents(buttonsArray):
     buttonClicked = ''
