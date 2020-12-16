@@ -1,6 +1,7 @@
 import pygame
 from pygame.locals import *
 from configuracion import *
+from helpers import *
 
 def dameLetraApretada(key):
     if key == K_a:
@@ -90,10 +91,7 @@ def dibujar(screen, palabraUsuario, lista, puntos, segundos, ayuda):
     #Linea Horizontal
     pygame.draw.line(screen, (255,255,255), (0, ALTO-70) , (ANCHO, ALTO-70), 5)
 
-    #fondo de pantalla
-    background = pygame.image.load(".//resources//elysium.png")
-    background = pygame.transform.scale(background, (ANCHO, ALTO))
-    screen.blit(background, (0,0))
+    setFondoJuego(screen)
 
     #muestra lo que escribe el jugador
     screen.blit(defaultFont.render(palabraUsuario, 1, COLOR_TEXTO), (190, 570))
@@ -153,3 +151,11 @@ def textoEnPartes(letra):
     if frase != '':
         listas.append(frase)
     return listas
+
+def waitForUserAction(screen):
+    # Array de botones a renderizar
+    buttonsArray = []
+
+    buttonsArray.append(['Menu', getWithPart(screen) * 3, getHeightPart(screen) * 10, 140, 40])
+
+    return renderButtonsAndWaitForAction(screen, buttonsArray)

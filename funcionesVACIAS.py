@@ -18,13 +18,10 @@ def lectura(archivo, letra, artistaYcancion): #se queda solo con los oraciones d
     for artistaCan in arrayArtistaCancion:
         artistaYcancion.append(artistaCan)
 
-    #segunda linea en adelante son lineas de la cancion. variable letra
-
     print(artistaYcancion)
     print(letra)
     archivo.close()
 
-    #return (artistaYcancion, letra)
 
 def seleccion(letra):#elige uno al azar, devuelve ese y el siguiente
     lineas = []
@@ -42,6 +39,7 @@ def puntos(n):
     #devuelve el puntaje, segun seguidilla
     puntosTotal = 0
 
+    #suma puntos haciendo 2 elevado a la n
     if(n > 0):
         puntosTotal = math.pow(2, n)
 
@@ -56,10 +54,10 @@ def esCorrecta(palabraUsuario, artistaYCancion, correctas):
     #chequea que sea correcta, que pertenece solo a la frase siguiente. Devuelve puntaje segun seguidilla
     puntosTotal = 0
 
+    #si la palabra es correcta sumo puntos, en caso contrario devuelve 0
     if palabraUsuario in artistaYCancion:
         correctas= correctas + 1
         puntosTotal = puntos(correctas)
-
 
     return puntosTotal
 
