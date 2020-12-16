@@ -29,13 +29,12 @@ def lectura(archivo, letra, artistaYcancion): #se queda solo con los oraciones d
 def seleccion(letra):#elige uno al azar, devuelve ese y el siguiente
     lineas = []
 
-    #index random teniendo en cuenta que tengo que seleccionar 2 seguidos
-    intRandom = random.randint(0,len(letra)-2)
+    # index random teniendo en cuenta que tengo que seleccionar 2 seguidos
+    intRandom = random.randint(0, len(letra) - 2)
     print(intRandom)
 
     lineas.append(letra[intRandom])
-    #lineas.append("De repente, escucho ¡Pum!, \nel de la esquina está tirado")
-    lineas.append(letra[intRandom+1])
+    lineas.append(letra[intRandom + 1])
 
     return (lineas)
 

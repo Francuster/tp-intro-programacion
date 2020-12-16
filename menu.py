@@ -130,3 +130,31 @@ def wrongAnswerSound():
 def deadSound():
     pygame.mixer.music.load('resources/Death.wav')
     pygame.mixer.music.play(0)
+
+def escribirPuntajes():
+    arrayHighScores = []
+    arrayHighScores.append(['franco disabato', 1800])
+
+    highscoresWrite = open('resources/highscore.txt', 'a', encoding='utf-8')
+
+    for highscore in arrayHighScores:
+        highscoresWrite.write(highscore[0] + "," + str(highscore[1]))
+        highscoresWrite.write("\n")
+
+    highscoresWrite.close()
+
+def leerPuntajes():
+    arrayHighScores = []
+
+    highscoresRead = open('resources/highscore.txt', 'r', encoding='utf-8')
+
+    for line in highscoresRead.readlines():
+        line = line.rstrip("\n")
+        usuarioPuntaje = line.split(",")
+        arrayHighScores.append([usuarioPuntaje[0], usuarioPuntaje[1]])
+
+    highscoresRead.close()
+
+    print(arrayHighScores)
+    return arrayHighScores
+

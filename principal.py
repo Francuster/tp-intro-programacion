@@ -37,7 +37,6 @@ def main():
 
         #definimos funciones
 
-
         #tiempo total del juego
         gameClock = pygame.time.Clock()
         totaltime = 0
@@ -65,7 +64,7 @@ def main():
         #elige una linea al azar y su siguiente
         lista=seleccion(letra)
 
-        ayuda = "Cancionero"
+        ayuda = ""
         dibujar(screen, palabraUsuario, lista, puntos, segundos, ayuda)
 
         while segundos > fps/1000:
