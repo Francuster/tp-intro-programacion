@@ -29,27 +29,53 @@ def getHeightPart(screen):
     heightPart = height / 12
     return heightPart
 
+#ejecuta el sonido una vez
 def correctAnswerSound():
     pygame.mixer.music.load('resources/Obtain_Ring.wav')
     pygame.mixer.music.play(0)
 
+#ejecuta el sonido una vez
 def multipleCorrectSound():
     pygame.mixer.music.load('resources/Checkpoint.wav')
     pygame.mixer.music.play(0)
 
+#ejecuta el sonido una vez
 def wrongAnswerSound():
     pygame.mixer.music.load('resources/Lose_Rings.wav')
     pygame.mixer.music.play(0)
 
+#ejecuta el sonido una vez
 def deadSound():
     pygame.mixer.music.load('resources/Death.wav')
     pygame.mixer.music.play(0)
 
-def escribirPuntajes():
-    arrayHighScores = []
-    arrayHighScores.append(['franco disabato', 1800])
+#Verifica si el puntaje ingresado le gana a alguno de los 10 mejores
+def isPuntajeAlto(puntaje):
+    arrayHighScores = leerPuntajes()
+    nuevoPuntajeAlto = False
 
-    highscoresWrite = open('resources/highscore.txt', 'a', encoding='utf-8')
+    for highscore in arrayHighScores:
+        if(int(puntaje) > highscore[1]):
+            nuevoPuntajeAlto = True
+            break
+
+    return nuevoPuntajeAlto
+
+#Metodo que inserta el nuevo puntaje en su lugar correspondiente y elimina el 11 de la lista
+def escribirPuntajes(usuario, puntaje):
+    arrayHighScores = leerPuntajes()
+    index = 0
+    for highScore in arrayHighScores:
+
+        if puntaje > highScore[1]:
+            arrayHighScores.insert(index, [usuario, puntaje])
+            break
+        index = index + 1
+
+    if len(arrayHighScores) > 10:
+        arrayHighScores.pop(10)
+
+    highscoresWrite = open('resources/highscore.txt', 'w', encoding='utf-8')
 
     for highscore in arrayHighScores:
         highscoresWrite.write(highscore[0] + "," + str(highscore[1]))
@@ -57,6 +83,7 @@ def escribirPuntajes():
 
     highscoresWrite.close()
 
+# metodo para leer puntajes y devuelve un array de ellos
 def leerPuntajes():
     arrayHighScores = []
 
@@ -69,7 +96,6 @@ def leerPuntajes():
 
     highscoresRead.close()
 
-    print(arrayHighScores)
     return arrayHighScores
 
 def renderButtonArray(screen, buttonArray):

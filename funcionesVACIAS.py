@@ -18,8 +18,7 @@ def lectura(archivo, letra, artistaYcancion): #se queda solo con los oraciones d
     for artistaCan in arrayArtistaCancion:
         artistaYcancion.append(artistaCan)
 
-    print(artistaYcancion)
-    print(letra)
+    #print(artistaYcancion)
     archivo.close()
 
 
@@ -28,7 +27,6 @@ def seleccion(letra):#elige uno al azar, devuelve ese y el siguiente
 
     # index random teniendo en cuenta que tengo que seleccionar 2 seguidos
     intRandom = random.randint(0, len(letra) - 2)
-    print(intRandom)
 
     lineas.append(letra[intRandom])
     lineas.append(letra[intRandom + 1])
