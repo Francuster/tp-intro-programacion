@@ -8,6 +8,7 @@ from extras import *
 
 from funcionesVACIAS import *
 from menu import *
+from highscore import *
 
 
 #Funcion principal
@@ -142,6 +143,10 @@ def mainGameRender(screen):
         pygame.display.flip()
 
     archivo.close()
+
+    if isPuntajeAlto(puntos):
+        print("puntaje alto")
+        insertarNombreUsuario(screen, puntos)
 
     return waitForUserAction(screen)
 

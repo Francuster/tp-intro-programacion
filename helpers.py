@@ -1,5 +1,7 @@
 import pygame
 from configuracion import *
+from pygame.locals import *
+from extras import *
 
 
 def setFondoMenu(screen):
@@ -45,11 +47,34 @@ def deadSound():
     pygame.mixer.music.load('resources/Death.wav')
     pygame.mixer.music.play(0)
 
-def escribirPuntajes():
-    arrayHighScores = []
-    arrayHighScores.append(['franco disabato', 1800])
+def isPuntajeAlto(puntaje):
+    arrayHighScores = leerPuntajes()
+    nuevoPuntajeAlto = False
 
-    highscoresWrite = open('resources/highscore.txt', 'a', encoding='utf-8')
+    for highscore in arrayHighScores:
+        if(int(puntaje) > highscore[1]):
+            nuevoPuntajeAlto = True
+            break
+
+    return nuevoPuntajeAlto
+
+
+def escribirPuntajes(usuario, puntaje):
+    arrayHighScores = leerPuntajes()
+
+    index = 0
+    for highScore in arrayHighScores:
+
+        if puntaje > highScore[1]:
+            arrayHighScores.insert(index, [usuario, puntaje])
+            break
+        index = index + 1
+
+    if len(arrayHighScores) > 10:
+        arrayHighScores.pop(10)
+
+
+    highscoresWrite = open('resources/highscore.txt', 'w', encoding='utf-8')
 
     for highscore in arrayHighScores:
         highscoresWrite.write(highscore[0] + "," + str(highscore[1]))
@@ -65,7 +90,7 @@ def leerPuntajes():
     for line in highscoresRead.readlines():
         line = line.rstrip("\n")
         usuarioPuntaje = line.split(",")
-        arrayHighScores.append([usuarioPuntaje[0], usuarioPuntaje[1]])
+        arrayHighScores.append([usuarioPuntaje[0], int(usuarioPuntaje[1])])
 
     highscoresRead.close()
 
@@ -109,6 +134,11 @@ def renderButton(screen, buttonText, coordX, coordY, width, height):
     # superimposing the text onto our button
     screen.blit(text, (coordX + 15, coordY))
 
+def renderText(screen, palabra, color, tamano, altura):
+    defaultFont = pygame.font.Font(pygame.font.get_default_font(), TAMANNO_LETRA)
+    screen.blit(defaultFont.render(palabra, 1, color),
+                (ANCHO // 2 - len(palabra) * tamano // 4, (tamano) * altura))
+
 def listenButtonEvents(buttonsArray):
     buttonClicked = ''
 
@@ -135,17 +165,21 @@ def listenButtonEvents(buttonsArray):
 
     return buttonClicked
 
+def renderButtons(screen, buttonsArray):
+    # listening click events
+    buttonClicked = listenButtonEvents(buttonsArray)
+
+    if (buttonClicked != ''):
+        return buttonClicked
+
+    renderButtonArray(screen, buttonsArray)
+
+    # updates the frames of the game
+    pygame.display.update()
+
 def renderButtonsAndWaitForAction(screen, buttonsArray):
 
     while True:
 
-        # listening click events
-        buttonClicked = listenButtonEvents(buttonsArray)
+        return renderButtons(screen, buttonsArray)
 
-        if (buttonClicked != ''):
-            return buttonClicked
-
-        renderButtonArray(screen, buttonsArray)
-
-        # updates the frames of the game
-        pygame.display.update()
