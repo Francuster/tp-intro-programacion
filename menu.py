@@ -16,9 +16,6 @@ def dibujarMenu(screen):
     buttonsArray = []
 
     buttonsArray.append(['Jugar', widthPart * 3, heightPart * 3, 140, 40])
-    buttonsArray.append(['button 2', widthPart * 7, heightPart * 3, 140, 40])
-    buttonsArray.append(['button 3', widthPart * 3, heightPart * 5, 140, 40])
-    buttonsArray.append(['button 4', widthPart * 7, heightPart * 5, 140, 40])
+    buttonsArray.append(['Puntajes', widthPart * 7, heightPart * 3, 140, 40])
 
-
-    renderButtonsAndWaitForAction(screen, buttonsArray)
+    return renderButtonsAndWaitForAction(screen, buttonsArray)
